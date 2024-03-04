@@ -5,18 +5,7 @@ import { URL } from '../App'
 
 const Home = () => {
   const navigate = useNavigate()
-  const [user, setUser] = useState('')
-  axios.defaults.withCredentials = true
-  useEffect(() => {
-     axios.get(`${URL}/auth/verify`)
-        .then(res => {
-           if(res.data.status){
-              setUser(res.data.data);
-           } else {
-              navigate('/')
-           }
-        })
-  }, [])
+  
   const handleLogout = () => {
     axios.get(`${URL}/auth/logout`)
       .then(res => {
@@ -32,10 +21,6 @@ const Home = () => {
   return (
     <div>
       home
-    
-      {user === '' ? <p>user not found</p> : <div><p>{user.username}</p><p>{user.email}</p></div> }
-  
-  
       <button><Link to={'/dashboard'} >Dashboard</Link></button>
       <br />
       <br />
